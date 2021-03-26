@@ -9,6 +9,7 @@ db = mysql.connector.connect(
 
 mycursor = db.cursor(buffered=True)
 
+Q0 = "CREATE DATABASE networkdatabase"
 Q1 = "CREATE TABLE Models (ID int PRIMARY KEY NOT NULL AUTO_INCREMENT, modelName VARCHAR(255) NOT NULL, numHidden int NOT NULL, epochs int NOT NULL, mini_batch_size int NOT NULL, eta float NOT NULL)"
 Q2 = "CREATE TABLE Accuracy (modelID int PRIMARY KEY, FOREIGN KEY(modelID) REFERENCES Models(ID), currentAccuracy float NOT NULL, maxAccuracy float NOT NULL, maxAccuracyEpoch int NOT NULL, accuracyArray VARCHAR(4095) NOT NULL)"
 
@@ -21,7 +22,8 @@ Q4 = "ALTER TABLE Accuracy ADD CONSTRAINT CHK_Accuracy CHECK(currentAccuracy>=0 
 # mycursor.execute("DESCRIBE Models")
 # mycursor.execute("DESCRIBE Accuracy")
 
-insertModel = "INSERT INTO Models (modelName, numHidden, epochs, mini_batch_size, eta) VALUES (%s,%d,%d,%d,%f)"
+# Wrong method
+# insertModel = "INSERT INTO Models (modelName, numHidden, epochs, mini_batch_size, eta) VALUES (%s,%d,%d,%d,%f)"
 
 #mycursor.execute(insertModel,networkName, str(self.sizes[1]), str(self.epochs), str(self.mini_batch_size), str(self.eta))
 #mycursor.execute("ALTER TABLE Accuracy CHANGE accuracyArray accuracyArray  VARCHAR(4095) NOT NULL")

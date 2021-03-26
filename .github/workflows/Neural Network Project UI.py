@@ -358,6 +358,7 @@ def searchFile(frm,lbl,accuracy):
             return
         if accuracy <0 or accuracy>100:
             lbl['text'] = "ERR: Accuracy is between 0 and 100"
+            return
         else:
             result = net.binarySearch(sortedNetworks,accuracy)
             if result == -1:
